@@ -1,7 +1,9 @@
 import express from "express"; // Import express
 import cors from "cors";
-
+import dotenv from "dotenv";
 const app = express(); // Create an instance of express
+
+dotenv.config();
 
 app.use(express.json());
 app.use(cors());
@@ -20,7 +22,7 @@ app.post("/api/OpenAI/Chat", async (req, res) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer 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`,
+          Authorization: `Bearer ${process.env.api_key}`,
         },
         body: JSON.stringify({
           model: "gpt-3.5-turbo",
